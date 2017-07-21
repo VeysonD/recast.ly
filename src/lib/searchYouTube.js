@@ -3,18 +3,21 @@ var searchYouTube = (options, callback) => {
   //console.log(callback);
   //console.log(options);
   //debugger;
-  $.get( "https://www.googleapis.com/youtube/v3/search",{
-    part : 'snippet',
-    key : options.key,
-    q : options.query,
-    maxResults : options.max || 5,
-    type : 'video',
-    videoEmbeddable : "true"
+  $.get( 'https://www.googleapis.com/youtube/v3/search', {
+    part: 'snippet',
+    key: options.key,
+    q: options.query,
+    maxResults: options.max || 5,
+    type: 'video',
+    videoEmbeddable: 'true'
   }).done(function(data) {
+    console.log('success');
     if (callback) {
       callback(data.items);
     }
-  }).fail(function(response) {console.log(response)});
+  }).fail(function(response) {
+    console.log(response);
+  });
 };
 
 window.searchYouTube = searchYouTube;
